@@ -2,20 +2,16 @@
 
 FROM ubuntu:22.04 as base
 
-RUN apt update
-RUN apt upgrade -y
-RUN apt install -y g++ cmake make wget
+RUN apt update && apt install -y g++ cmake make wget gdb
 
 WORKDIR /usr/local/src
 RUN wget https://boostorg.jfrog.io/artifactory/main/release/1.84.0/source/boost_1_84_0.tar.gz
 RUN tar -zxf boost_1_84_0.tar.gz
+RUN rm ./boost_1_84_0.tar.gz
 
 WORKDIR /usr/local/src/boost_1_84_0
 RUN ./bootstrap.sh --with-libraries=program_options
-RUN ./b2 --build-dir=/tmp/build-boost variant=debug toolset=gcc install
+RUN ./b2 --build-dir=/tmp/build-boost link=static threading=multi variant=release toolset=gcc install
 
 WORKDIR /usr/local/src
-RUN rm -r ./boost_1_84_0.tar.gz /usr/local/src/boost_1_84_0
-
-# dev
-RUN apt install -y gdb
+RUN rm -r /usr/local/src/boost_1_84_0
