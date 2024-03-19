@@ -1,14 +1,19 @@
 #include <iostream>
 #include <boost/program_options.hpp>
 
+#include "MersennePrimer.h"
+
 namespace po = boost::program_options;
 
 int main(const int ac, char *av[]) {
   try {
     po::options_description desc("Allowed options");
+
+    unsigned int n{0};
+
     desc.add_options()
-        ("help", "This program finds Mersenne primes for some given integer n.")
-        ("n", "Limit the search to an integer n (in 2^n-1).");
+        ("help", "Display help message")
+        ("n", po::value<unsigned int>(&n), "Limit the search to an integer n (in 2^n-1)");
 
     po::variables_map vm;
     store(parse_command_line(ac, av, desc), vm);
@@ -20,14 +25,17 @@ int main(const int ac, char *av[]) {
     }
 
     if (vm.contains("n")) {
-      std::cout << "N was set to " << vm["n"].as<int>() << ".\n";
+      MersennePrimer primer{n};
+      primer.run();
     } else {
-      std::cout << "N was not set.\n";
+      std::cout << "N was not set; use --n <int>.\n";
     }
   } catch (std::exception &e) {
-    std::cerr << "error: " << e.what() << "\n";
+    std::cerr << "Error: " << e.what() << "\n";
+    return 1;
   } catch (...) {
     std::cerr << "Exception of unknown type!\n";
+    return 1;
   }
 
   return 0;

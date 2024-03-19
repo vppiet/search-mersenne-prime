@@ -1,6 +1,6 @@
 # search-mersenne-prime
 
-C++ Implementation of Searching Mersenne Prime Numbers
+Portfolio project: C++ Implementation of Finding Mersenne Prime Numbers
 
 ## Resources
 
