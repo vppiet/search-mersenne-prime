@@ -7,13 +7,11 @@ class MersennePrimer {
 public:
   explicit MersennePrimer(unsigned int n);
 
-  static int calc_form(unsigned int n);
-
-  static bool is_prime(int x);
+  static bool is_ll_prime(unsigned int p);
 
   void run() const;
 
   ~MersennePrimer() = default;
 };
 
-#endif //PRIMER_H
+#endif // PRIMER_H
