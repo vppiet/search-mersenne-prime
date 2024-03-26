@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
+#include "MersennePrimer.h"
 
-TEST(HelloTest, BasicAssertions) {
-  EXPECT_STRNE("hello", "world");
-  EXPECT_EQ(7 * 6, 42);
+TEST(MersennePrimerTest, CalcFormPositiveNumbers) {
+  EXPECT_EQ(MersennePrimer::calc_form(3), 7);
 }
