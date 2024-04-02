@@ -10,6 +10,8 @@ TEST(MersennePrimerTest, IsPrimePrimes) {
   EXPECT_TRUE(MersennePrimer::is_ll_prime(17));
   EXPECT_TRUE(MersennePrimer::is_ll_prime(19));
   EXPECT_TRUE(MersennePrimer::is_ll_prime(31));
+  EXPECT_TRUE(MersennePrimer::is_ll_prime(61));
+  EXPECT_TRUE(MersennePrimer::is_ll_prime(89));
 }
 
 TEST(MersennePrimerTest, IsPrimeNonPrimes) {

@@ -2,6 +2,7 @@
 #define PRIMER_H
 
 class MersennePrimer {
+private:
   unsigned int n;
 
 public:
