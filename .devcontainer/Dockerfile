@@ -1,18 +1,17 @@
-# syntax=docker/dockerfile:1
+FROM mcr.microsoft.com/devcontainers/cpp:1-debian-12
 
-FROM ubuntu:22.04 AS base
+ARG REINSTALL_CMAKE_VERSION_FROM_SOURCE="3.22.2"
 
-WORKDIR /usr/local/src
-RUN apt update && \
-    apt install -y build-essential cmake libboost-program-options-dev pkg-config libgmp-dev gdb git
+COPY ./reinstall-cmake.sh /tmp/
 
-FROM base AS build-gtest
-RUN git clone -b v1.14.0 --depth 1 https://github.com/google/googletest.git /tmp/googletest && \
-    cd /tmp/googletest && \
-    mkdir build && \
-    cd build && \
-    cmake .. && \
-    make install
+RUN if [ "${REINSTALL_CMAKE_VERSION_FROM_SOURCE}" != "none" ]; then \
+  chmod +x /tmp/reinstall-cmake.sh && /tmp/reinstall-cmake.sh ${REINSTALL_CMAKE_VERSION_FROM_SOURCE}; \
+  fi \
+  && rm -f /tmp/reinstall-cmake.sh
 
-FROM base AS final
-COPY --from=build-gtest /usr/local /usr/local
+# install autoconf required by gmp
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+  && apt-get -y install --no-install-recommends automake libtool
+
+COPY ./vcpkg.json /tmp/vcpkg/
+RUN su vscode -c "${VCPKG_ROOT}/vcpkg install --x-manifest-root=/tmp/vcpkg"
