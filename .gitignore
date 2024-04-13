@@ -32,7 +32,4 @@
 *.app
 
 # Build directory
-build/
-
-# JetBrains
-.idea/
+out/

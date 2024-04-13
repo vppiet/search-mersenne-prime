@@ -7,4 +7,6 @@ include_directories(src)
 
 add_subdirectory(lib)
 add_subdirectory(src)
+
+enable_testing()
 add_subdirectory(tests)
