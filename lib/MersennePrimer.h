@@ -2,15 +2,10 @@
 #define PRIMER_H
 
 class MersennePrimer {
-private:
-  unsigned int n;
-
 public:
-  explicit MersennePrimer(unsigned int n);
-
   static bool is_ll_prime(unsigned int p);
 
-  void run() const;
+  static void run(unsigned int max_p);
 
   ~MersennePrimer() = default;
 };

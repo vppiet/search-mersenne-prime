@@ -25,8 +25,7 @@ int main(const int ac, char *av[]) {
     }
 
     if (vm.contains("n")) {
-      const MersennePrimer primer{n};
-      primer.run();
+      MersennePrimer::run(n);
     } else {
       std::cout << "N was not set; use --n <int>.\n";
     }

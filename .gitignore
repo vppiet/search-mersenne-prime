@@ -33,3 +33,6 @@
 
 # Build directory
 out/
+
+# IDE
+.vscode/
