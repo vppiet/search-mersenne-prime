@@ -9,7 +9,8 @@
       "extensions": [
         "ms-vscode.cpptools-extension-pack",
         "ms-vscode.cmake-tools",
-        "SonarSource.sonarlint-vscode"
+        "SonarSource.sonarlint-vscode",
+        "GitHub.vscode-github-actions"
       ]
     }
   },
