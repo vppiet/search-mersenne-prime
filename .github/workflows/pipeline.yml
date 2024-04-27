@@ -1,6 +1,6 @@
 # This starter workflow is for a CMake project running on a single platform. There is a different starter workflow if you need cross-platform coverage.
 # See: https://github.com/actions/starter-workflows/blob/main/ci/cmake-multi-platform.yml
-name: CMake on a single platform
+name: Build in dev container
 
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Checkout GitHub repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
@@ -36,4 +36,6 @@ jobs:
         with:
           cacheFrom: ghcr.io/vppiet/search-mersenne-prime-devcontainer
           push: never
-          runCmd: ./ci-build.sh
+          runCmd: |
+            cmake --preset=default
+            cmake --build --preset=default
