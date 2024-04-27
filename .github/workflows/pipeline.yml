@@ -25,17 +25,18 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Pre-build dev container image
-        uses: devcontainers/ci@v0.3
+        uses: devcontainers/ci@v0.3.1900000349
         with:
           imageName: ghcr.io/vppiet/search-mersenne-prime-devcontainer
           cacheFrom: ghcr.io/vppiet/search-mersenne-prime-devcontainer
           push: always
 
       - name: Build
-        uses: devcontainers/ci@v0.3
+        uses: devcontainers/ci@v0.3.1900000349
         with:
           cacheFrom: ghcr.io/vppiet/search-mersenne-prime-devcontainer
           push: never
           runCmd: |
+            id
             cmake --preset=default
-            cmake --build --preset=default
+            cmake --build --preset=default --target search_mersenne_prime
