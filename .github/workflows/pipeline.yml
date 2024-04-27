@@ -36,6 +36,7 @@ jobs:
         with:
           cacheFrom: ghcr.io/vppiet/search-mersenne-prime-devcontainer
           push: never
+          skipContainerUserIdUpdate: true
           runCmd: |
             id
             cmake --preset=default
