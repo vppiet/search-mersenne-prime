@@ -1,20 +1,19 @@
-# This starter workflow is for a CMake project running on a single platform. There is a different starter workflow if you need cross-platform coverage.
-# See: https://github.com/actions/starter-workflows/blob/main/ci/cmake-multi-platform.yml
-name: Build in dev container
+name: Build C++ in Devcontainer
 
 on:
   push:
     branches: ["main"]
+    paths-ignore: ".devcontainer/*"
 
 jobs:
   build:
-    # The CMake configure and build commands are platform agnostic and should work equally well on Windows or Mac.
-    # You can convert this to a matrix build if you need cross-platform coverage.
-    # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
 
     steps:
-      - name: Checkout GitHub repository
+      - name: Checkout GitHub Repository
         uses: actions/checkout@v4
 
       - name: Login to GitHub Container Registry
@@ -24,18 +23,11 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Pre-build dev container image
+      - name: Build C++
         uses: devcontainers/ci@v0.3.1900000349
         with:
           imageName: ghcr.io/vppiet/search-mersenne-prime-devcontainer
           cacheFrom: ghcr.io/vppiet/search-mersenne-prime-devcontainer
-          push: always
-
-      - name: Build
-        uses: devcontainers/ci@v0.3.1900000349
-        with:
-          cacheFrom: ghcr.io/vppiet/search-mersenne-prime-devcontainer
-          push: never
           runCmd: |
             cmake --preset=default
             cmake --build --preset=default --target search_mersenne_prime
