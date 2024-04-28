@@ -13,5 +13,6 @@
         "GitHub.vscode-github-actions"
       ]
     }
-  }
+  },
+  "postCreateCommand": "vcpkg install"
 }

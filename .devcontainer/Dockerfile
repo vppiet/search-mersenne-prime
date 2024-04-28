@@ -9,9 +9,7 @@ RUN if [ "${REINSTALL_CMAKE_VERSION_FROM_SOURCE}" != "none" ]; then \
   fi \
   && rm -f /tmp/reinstall-cmake.sh
 
-# install autoconf required by gmp
+# install build dependencies required by gmp
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-  && apt-get -y install --no-install-recommends automake libtool
-
-COPY ./vcpkg.json /tmp/vcpkg/
-RUN su vscode -c "${VCPKG_ROOT}/vcpkg install --x-manifest-root=/tmp/vcpkg"
+  && apt-get -y install --no-install-recommends automake libtool \
+  && apt-get clean

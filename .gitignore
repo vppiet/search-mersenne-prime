@@ -36,3 +36,6 @@ out/
 
 # IDE
 .vscode/
+
+# VCPKG manifest install
+vcpkg_installed/
