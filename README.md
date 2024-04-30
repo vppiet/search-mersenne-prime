@@ -1,5 +1,7 @@
 # search-mersenne-prime
 
+![](https://github.com/vppiet/search-mersenne-prime/actions/workflows/pipeline.yml/badge.svg)
+
 Portfolio project: C++ Implementation of Finding Mersenne Prime Numbers
 
 ## Resources

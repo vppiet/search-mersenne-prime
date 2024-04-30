@@ -2,7 +2,7 @@
   "version": 2,
   "configurePresets": [
     {
-      "name": "default",
+      "name": "toolchain-vcpkg",
       "displayName": "Configure preset using toolchain file",
       "description": "Sets Ninja generator, build and install directory",
       "generator": "Ninja",
@@ -15,8 +15,28 @@
   ],
   "buildPresets": [
     {
-      "name": "default",
-      "configurePreset": "default"
+      "name": "search_mersenne_prime",
+      "description": "Build command-line utility",
+      "configurePreset": "toolchain-vcpkg",
+      "targets": [
+        "search_mersenne_prime"
+      ]
+    },
+    {
+      "name": "libmersenneprimer",
+      "description": "Build the library",
+      "configurePreset": "toolchain-vcpkg",
+      "targets": [
+        "libmersenneprimer"
+      ]
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "test",
+      "description": "",
+      "displayName": "",
+      "configurePreset": "toolchain-vcpkg"
     }
   ]
 }

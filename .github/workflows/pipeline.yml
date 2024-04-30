@@ -3,7 +3,6 @@ name: Build C++ in Devcontainer
 on:
   push:
     branches: ["main"]
-    paths-ignore: ".devcontainer/*"
 
 jobs:
   build:
@@ -29,5 +28,5 @@ jobs:
           imageName: ghcr.io/vppiet/search-mersenne-prime-devcontainer
           cacheFrom: ghcr.io/vppiet/search-mersenne-prime-devcontainer
           runCmd: |
-            cmake --preset=default
-            cmake --build --preset=default --target search_mersenne_prime
+            cmake --preset=toolchain-vcpkg
+            cmake --build --preset=search_mersenne_prime
