@@ -15,19 +15,27 @@
   ],
   "buildPresets": [
     {
-      "name": "search_mersenne_prime",
+      "name": "SearchMersennePrime",
       "description": "Build command-line utility",
       "configurePreset": "toolchain-vcpkg",
       "targets": [
-        "search_mersenne_prime"
+        "SearchMersennePrime"
       ]
     },
     {
-      "name": "libmersenneprimer",
+      "name": "LibMersennePrimer",
       "description": "Build the library",
       "configurePreset": "toolchain-vcpkg",
       "targets": [
-        "libmersenneprimer"
+        "LibMersennePrimer"
+      ]
+    },
+    {
+      "name": "LibMersennePrimer_test",
+      "description": "Build the test file of the library",
+      "configurePreset": "toolchain-vcpkg",
+      "targets": [
+        "LibMersennePrimer_test"
       ]
     }
   ],
